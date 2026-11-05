@@ -1,13 +1,15 @@
 secret = 42
+proposition = -1
 
-try:
-    proposition = int(input("Votre proposition : "))
+while proposition != secret:
+    try:
+        proposition = int(input("Votre proposition : "))
 
-    if proposition < secret:
-        print("C'est +")
-    elif proposition > secret:
-        print("C'est -")
-    else:
-        print("C'est gagné")
-except:
-    print("Merci d'entrer un nombre entier valide.")
+        if proposition < secret:
+            print("C'est +")
+        elif proposition > secret:
+            print("C'est -")
+        else:
+            print("C'est gagné")
+    except:
+        print("Merci d'entrer un nombre entier valide.")

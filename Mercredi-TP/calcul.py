@@ -14,3 +14,12 @@ for i in range(1, 11):
         print(f"Retourne en CE1, la bonne réponse était {a * b}")
 
 print(f"Score : {score}/10")
+
+if score == 10:
+    print("Parfait")
+elif score >= 7:
+    print("Très bien !")
+elif score >= 5:
+    print("Pas mal, fait un effort quand même")
+else:
+    print("C'était y'a longtemps la primaire non ?")

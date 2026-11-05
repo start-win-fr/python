@@ -1,4 +1,6 @@
-secret = 42
+import random
+
+secret = random.randint(1, 100)
 proposition = 0
 coups = 0
 

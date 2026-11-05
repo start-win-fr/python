@@ -1,6 +1,6 @@
 import os
 
-contenu = os.listdir("Lundi")
+contenu = sorted(os.listdir("Lundi"))
 
 for nom in contenu:
     print(nom)

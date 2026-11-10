@@ -1,0 +1,4 @@
+Combien font 7 x 8 ?;56
+Quelle commande Git envoie les commits sur GitHub ?;push
+Quel mot-clé définit une fonction en Python ?;def
+Combien vaut 17 // 5 ?;3

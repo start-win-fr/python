@@ -1,12 +1,21 @@
-# Fabrique le dossier bac-a-sable, avec des fichiers de tailles et de dates connues.
-# À lancer une seule fois : python3 creer_bac_a_sable.py
+# ============================================================
+# Script utilitaire : créer le dossier bac-a-sable
+# ============================================================
+# À lancer une seule fois : python creer_bac_a_sable.py
+#
+# Objectifs :
+# - créer une arborescence de dossiers / fichiers de démo
+# - écrire des fichiers avec une taille précise
+# - fixer une date de modification avec os.utime()
+# ============================================================
+
 import os
 import sys
 from datetime import datetime
 
 RACINE = "bac-a-sable"
 
-# chemin du fichier : (taille en octets, date de dernière modification)
+# Dictionnaire : chemin du fichier → (taille en octets, date de dernière modification)
 FICHIERS = {
     "rapport.txt": (1834, "2026-11-02 09:30"),
     "budget.csv": (612, "2026-10-15 18:05"),
@@ -25,22 +34,32 @@ FICHIERS = {
 }
 DOSSIERS_VIDES = ["musique"]
 
+# Sécurité : on ne recrée pas si le dossier existe déjà
 if os.path.exists(RACINE):
     print(f"Le dossier {RACINE} existe déjà. Pour repartir de zéro : rm -r {RACINE}")
     sys.exit(1)
 
+# Création de chaque fichier avec la taille et la date voulues
 for chemin, (taille, date) in FICHIERS.items():
     complet = os.path.join(RACINE, chemin)
+
+    # Crée les dossiers parents si besoin (ex: photos/miniatures/)
     os.makedirs(os.path.dirname(complet), exist_ok=True)
-    with open(complet, "wb") as f:
+
+    with open(complet, "wb") as f:  # "wb" = écriture binaire
         if chemin.endswith((".txt", ".csv", ".md", ".py")):
+            # Fichiers texte : on remplit avec du "Lorem ipsum" tronqué à la bonne taille
             ligne = b"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n"
             f.write((ligne * (taille // len(ligne) + 1))[:taille])
         else:
+            # Autres fichiers (images, pdf, zip) : octets nuls de la taille demandée
             f.write(bytes(taille))
+
+    # Fixe la date de modification du fichier
     horodatage = datetime.strptime(date, "%Y-%m-%d %H:%M").timestamp()
     os.utime(complet, (horodatage, horodatage))
 
+# Création des dossiers vides (sans fichier dedans)
 for dossier in DOSSIERS_VIDES:
     os.makedirs(os.path.join(RACINE, dossier), exist_ok=True)
 

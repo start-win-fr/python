@@ -15,3 +15,10 @@ jobs:
           uname -a
           python3 --version
           nproc
+          ls -la
+
+      - name: Récupérer le code
+        uses: actions/checkout@v7
+
+      - name: Verifier la récupération
+        run: ls -la

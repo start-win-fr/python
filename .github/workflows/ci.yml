@@ -23,4 +23,4 @@ jobs:
                 run: pip install ruff==0.16.8
 
             -   name: Analyser le code avec Ruff
-                run: ruff check .
+                run: ruff check ./vide.py

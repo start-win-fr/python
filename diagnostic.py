@@ -48,7 +48,7 @@ for f in files:
         big_files.append((f, size))
 
 # --- Affichage du résumé ---
-print(f"\n=== Diagnostic dossier ===")
+print("\n=== Diagnostic dossier ===")
 print(f"Dossier diagnostiqué : {directory.resolve()}")  # resolve() = chemin absolu
 print(f"Nombre de fichiers total : {total}")
 print(f"Nombre de fichiers .txt : {txt_count}")
